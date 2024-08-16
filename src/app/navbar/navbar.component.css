@@ -1,0 +1,27 @@
+/* styles.css */
+nav {
+    background-color: white;
+    color: #0088cc;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    border: 1px solid #e8e8e8;
+    padding-left: 10rem;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+
+
+ul {
+    list-style-type: none;
+    margin-bottom: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: flex-start;
+    position: relative;
+}

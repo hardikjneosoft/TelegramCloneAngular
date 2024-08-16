@@ -1,4 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
-body{
-    margin-left: 0;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+:root {
+    --mainColor: #3390ec;
+    --whiteColor: #ffffff;
+    --blackColor: #000000;
+    --borderColor: #dfe1e5;
+    --greenColor: #0ac630;
+    --unreadMessage: #c4c9cc;
+    --grayColor: #707579;
+    --sentMessage:#8dd4f7;
+}
+
+html {
+    /* This font-size is for the chat page. It has been moved for that component specific */
+    /* font-size: 62.5%; */     
+    scroll-behavior: smooth;
+}
+
+body {
+    font-weight: 400;
+    /* overflow: hidden; */ 
 }
