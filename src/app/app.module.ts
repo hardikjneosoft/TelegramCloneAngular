@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NavbarLinkComponent } from './navbar-link/navbar-link.component';
 import { HomeComponent } from './home/home.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     NavbarLinkComponent,
-    HomeComponent   // components, pipes
+    HomeComponent,
+    ChatComponent   // components, pipes
   ],
   imports: [
     BrowserModule,  // dependenices modules 
