@@ -1,0 +1,122 @@
+<main>
+    <aside class="right-side">
+        <div class="header-container">
+            <div class="header">
+                <div class="toggle-button">
+                    <i class="fas fa-bars"> </i>  
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search">
+                </div>
+            </div>
+        </div>
+        <div class="body-container">
+            <div class="chat-list">
+                <div *ngFor="let chat of chatData; let i = index" class="chat-box" [id]="'chat-' + i">
+                    <div class="chat-img">
+                      <img [src]="chat.pimg" alt="">
+                    </div>
+                    <div class="chat-details">
+                      <div class="chat-title">
+                        <h3>{{ chat.name }}</h3>
+                        <span>{{ chat.time }}</span>
+                      </div>
+                      <div class="chat-msg">
+                        <p>{{ chat.msg }}</p>
+                        <span>{{ chat.unread }}</span>
+                      </div>   
+                    </div>
+                  </div>
+            </div>
+        </div>
+
+        <div class="files" id="files">
+            <ul class="menu">
+                <li class="active">chats</li>
+                <li>media</li>
+                <li>links</li>
+                <li>files</li>
+                <li>music</li>
+                <li>voices</li>
+            </ul>
+            <ul class="profiles">
+                <li>
+                    <img src="img/profile-img.png" alt="">
+                    <h4>John Doe</h4>
+                </li>
+                <li>
+                    <img src="img/profile-1.png" alt="">
+                    <h4>John Doe</h4>
+                </li>
+                <li>
+                    <img src="img/profile-2.png" alt="">
+                    <h4>John Doe</h4>
+                </li>
+                <li>
+                    <img src="img/profile-3.png" alt="">
+                    <h4>John Doe</h4>
+                </li>
+                <li>
+                    <img src="img/profile-4.png" alt="">
+                    <h4>John Doe</h4>
+                </li>
+            </ul>
+        </div>
+
+        <div class="pen">
+            <i class="fas fa-pen"></i>
+        </div>
+    </aside>
+
+    <section class="content">
+        <div class="container active" id="chatBox">
+            <div class="content-header">
+                <div class="image">
+                    <img src="img/profile-img.png" alt="">
+                </div>
+                <div class="details">
+                    <h3>John Doe</h3>
+                    <span>last seen </span>
+                </div>
+                <div class="icons">
+                    <div class="fas fa-phone-alt"></div>
+                    <div class="fas fa-search"></div>
+                    <div class="fas fa-ellipsis-v"></div>
+                </div>
+            </div>
+            <div class="chat-container">
+                <!-- <div class="chat-msg">
+                    <p>Hey, How you doin</p>
+                    <span class="time">5:32 PM</span>
+                </div>
+                <div class="chat-msg sent">
+                    <p>Hey, How you doin</p>
+                    <span class="time">5:32 PM</span>
+                </div><div class="chat-msg">
+                    <p>Hey, How you doin</p>
+                    <span class="time">5:32 PM</span>
+                </div><div class="chat-msg sent">
+                    <p>Hey, How you doin</p>
+                    <span class="time">5:32 PM</span>
+                </div> -->
+            </div>
+            <div class="message-box">
+                <div class="message-content">
+                    <i class="fas fa-paperclip"></i>
+                         <input type="text" placeholder="Type your message here" [(ngModel)="inputText" />
+                        <i class="far fa-smile"></i>
+                        <i class="fas fa-microphone"></i>
+                        <i class="fas fa-paper-plane"></i>
+
+                </div>
+                <!-- <div class="micro">
+                    <i class="fas fa-microphone"></i>
+                </div> -->
+            </div>
+        </div>
+    </section>
+</main>
+<script src="js/main.js"></script> 
+<script src="js/fetchData.js"></script>
