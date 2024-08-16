@@ -7,6 +7,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NavbarLinkComponent } from './navbar-link/navbar-link.component';
 import { HomeComponent } from './home/home.component';
 import { ChatComponent } from './chat/chat.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ChatComponent } from './chat/chat.component';
   ],
   imports: [
     BrowserModule,  // dependenices modules 
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],  //services
   bootstrap: [AppComponent] //root component
