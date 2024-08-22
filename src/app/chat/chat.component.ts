@@ -111,5 +111,9 @@ export class ChatComponent {
     }
                 ]
     inputText:string='';
- constructor(){}  
+        constructor(){}  
+    sendMsg(){
+        console.log("Message Sent!")
+        this.inputText =''
+    }
 }

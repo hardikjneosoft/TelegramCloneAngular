@@ -8,6 +8,7 @@ import { NavbarLinkComponent } from './navbar-link/navbar-link.component';
 import { HomeComponent } from './home/home.component';
 import { ChatComponent } from './chat/chat.component';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -15,12 +16,13 @@ import { FormsModule } from '@angular/forms';
     NavbarComponent,
     NavbarLinkComponent,
     HomeComponent,
-    ChatComponent   // components, pipes
+    ChatComponent,
   ],
   imports: [
     BrowserModule,  // dependenices modules 
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   providers: [],  //services
   bootstrap: [AppComponent] //root component

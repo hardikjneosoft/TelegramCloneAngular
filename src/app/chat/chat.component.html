@@ -15,6 +15,7 @@
         <div class="body-container">
             <div class="chat-list">
                 <div *ngFor="let chat of chatData; let i = index" class="chat-box" [id]="'chat-' + i">
+                    
                     <div class="chat-img">
                       <img [src]="chat.pimg" alt="">
                     </div>
@@ -31,7 +32,6 @@
                   </div>
             </div>
         </div>
-
         <div class="files" id="files">
             <ul class="menu">
                 <li class="active">chats</li>
@@ -105,11 +105,10 @@
             <div class="message-box">
                 <div class="message-content">
                     <i class="fas fa-paperclip"></i>
-                         <input type="text" placeholder="Type your message here" [(ngModel)="inputText" />
+                        <input type="text" placeholder="Type your message here" [(ngModel)]="inputText" (keyup.enter)="sendMsg()"/>
                         <i class="far fa-smile"></i>
-                        <i class="fas fa-microphone"></i>
-                        <i class="fas fa-paper-plane"></i>
-
+                        <i class="fas fa-microphone" [ngStyle]="inputText.trim()?{opacity:0}:{opcaity:1}"></i>
+                        <i class="fas fa-paper-plane" [ngStyle]="inputText.trim()?{opacity:1}:{opcaity:0}" (click)="sendMsg()"></i>
                 </div>
                 <!-- <div class="micro">
                     <i class="fas fa-microphone"></i>
