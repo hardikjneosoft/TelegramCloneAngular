@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './aside.component.css'
 })
 export class AsideComponent {
+
   chatData = [
     {
         "name": "John Doe",
@@ -110,8 +111,7 @@ export class AsideComponent {
         "msg": "Dummy msg"
     }
                 ]
+    filesOpen = true
+    settingsOpen = false
     
-    searchFocus(){
-        
-    }
 }
