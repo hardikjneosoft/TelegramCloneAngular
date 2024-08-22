@@ -1,0 +1,71 @@
+<aside class="right-side">
+    <div class="header-container">
+        <div class="header">
+            <div class="toggle-button">
+                <i class="fas fa-bars"> </i>  
+                <i class="fas fa-arrow-left"></i>
+            </div>
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search" (focus)="searchFocus()">
+            </div>
+        </div>
+    </div>
+    <div class="body-container">
+        <div class="chat-list">
+            <div *ngFor="let chat of chatData; let i = index" class="chat-box" [id]="'chat-' + i">
+                
+                <div class="chat-img">
+                  <img [src]="chat.pimg" alt="">
+                </div>
+                <div class="chat-details">
+                  <div class="chat-title">
+                    <h3>{{ chat.name }}</h3>
+                    <span>{{ chat.time }}</span>
+                  </div>
+                  <div class="chat-msg">
+                    <p>{{ chat.msg }}</p>
+                    <span>{{ chat.unread }}</span>
+                  </div>   
+                </div>
+              </div>
+        </div>
+    </div>
+
+    <div class="files" id="files">
+        <ul class="menu">
+            <li class="active">chats</li>
+            <li>media</li>
+            <li>links</li>
+            <li>files</li>
+            <li>music</li>
+            <li>voices</li>
+        </ul>
+        <ul class="profiles">
+            <li>
+                <img src="img/profile-img.png" alt="">
+                <h4>John Doe</h4>
+            </li>
+            <li>
+                <img src="img/profile-1.png" alt="">
+                <h4>John Doe</h4>
+            </li>
+            <li>
+                <img src="img/profile-2.png" alt="">
+                <h4>John Doe</h4>
+            </li>
+            <li>
+                <img src="img/profile-3.png" alt="">
+                <h4>John Doe</h4>
+            </li>
+            <li>
+                <img src="img/profile-4.png" alt="">
+                <h4>John Doe</h4>
+            </li>
+        </ul>
+    </div>
+
+    <div class="pen">
+        <i class="fas fa-pen"></i>
+    </div>
+</aside>

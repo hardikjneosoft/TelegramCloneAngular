@@ -9,6 +9,8 @@ import { HomeComponent } from './home/home.component';
 import { ChatComponent } from './chat/chat.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AsideComponent } from './chat/aside/aside.component';
+import { FilesComponent } from './chat/aside/files/files.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { CommonModule } from '@angular/common';
     NavbarLinkComponent,
     HomeComponent,
     ChatComponent,
+    AsideComponent,
+    FilesComponent,
   ],
   imports: [
     BrowserModule,  // dependenices modules 

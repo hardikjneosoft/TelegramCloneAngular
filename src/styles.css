@@ -18,8 +18,8 @@
 }
 
 html {
-    /* This font-size is for the chat page. It has been moved for that component specific */
-    /* font-size: 62.5%; */     
+    /* This font-size is for the chat page. It should be moved for that component specific */
+    font-size: 82.5%;     
     scroll-behavior: smooth;
 }
 
