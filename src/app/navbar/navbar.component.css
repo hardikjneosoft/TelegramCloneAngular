@@ -2,7 +2,7 @@
 nav {
     background-color: white;
     color: #0088cc;
-    position: fixed;
+    position: sticky;
     top: 0;
     width: 100%;
     border: 1px solid #e8e8e8;

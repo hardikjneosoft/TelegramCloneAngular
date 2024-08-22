@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AsideComponent } from './chat/aside/aside.component';
 import { FilesComponent } from './chat/aside/files/files.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { FilesComponent } from './chat/aside/files/files.component';
     ChatComponent,
     AsideComponent,
     FilesComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,  // dependenices modules 
