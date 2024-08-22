@@ -14,7 +14,7 @@
 
     <div class="body-container">
         <div class="chat-list">
-            <div *ngFor="let chat of chatData; let i = index" class="chat-box" [id]="'chat-' + i">
+            <div *ngFor="let chat of chatData; let i = index" class="chat-box" [id]="'chat-' + i" (click)="setChatBoxEmitter.emit(i)">
                 
                 <div class="chat-img">
                   <img [src]="chat.pimg" alt="">

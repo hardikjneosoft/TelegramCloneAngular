@@ -1,14 +1,14 @@
 <main>
-    <app-aside></app-aside>
+    <app-aside [chatData]="chatData" (setChatBoxEmitter)="setChatBox($event)"></app-aside>
     <section class="content">
         <div class="container active" id="chatBox">
             <div class="content-header">
                 <div class="image">
-                    <img src="img/profile-img.png" alt="">
+                    <img [src]="pfp" alt="">
                 </div>
                 <div class="details">
-                    <h3>John Doe</h3>
-                    <span>last seen </span>
+                    <h3>{{name}}</h3>
+                    <span>{{lastSeen}} </span>
                 </div>
                 <div class="icons">
                     <div class="fas fa-phone-alt"></div>
@@ -17,28 +17,19 @@
                 </div>
             </div>
             <div class="chat-container">
-                <!-- <div class="chat-msg">
-                    <p>Hey, How you doin</p>
+                <div *ngFor="let msg of messages" class="chat-msg sent">
+                    <p>{{msg}}</p>
                     <span class="time">5:32 PM</span>
                 </div>
-                <div class="chat-msg sent">
-                    <p>Hey, How you doin</p>
-                    <span class="time">5:32 PM</span>
-                </div><div class="chat-msg">
-                    <p>Hey, How you doin</p>
-                    <span class="time">5:32 PM</span>
-                </div><div class="chat-msg sent">
-                    <p>Hey, How you doin</p>
-                    <span class="time">5:32 PM</span>
-                </div> -->
+                
             </div>
             <div class="message-box">
                 <div class="message-content">
                     <i class="fas fa-paperclip"></i>
-                        <input type="text" placeholder="Type your message here" [(ngModel)]="inputText" (keyup.enter)="sendMsg()"/>
+                        <input #newMsg type="text" placeholder="Type your message here" [(ngModel)]="inputText" (keyup.enter)="newMsg.value?sendMsg(newMsg.value):null"/>
                         <i class="far fa-smile"></i>
                         <i class="fas fa-microphone" [ngStyle]="inputText.trim()?{opacity:0}:{opcaity:1}"></i>
-                        <i class="fas fa-paper-plane" [ngStyle]="inputText.trim()?{opacity:1}:{opcaity:0}" (click)="sendMsg()"></i>
+                        <i class="fas fa-paper-plane" [ngStyle]="inputText.trim()?{opacity:1}:{opcaity:0}" (click)="sendMsg(newMsg.value)"></i>
                 </div>
                 <!-- <div class="micro">
                     <i class="fas fa-microphone"></i>
