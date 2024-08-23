@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
-import { FormGroup,FormControl,ReactiveFormsModule,Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrl: './signup.component.css'
 })
-export class LoginComponent {
-  
+export class SignupComponent {
   static countries = [
     { "code": "IN", "name": "India", "flag": "🇮🇳", "phoneCode": "+91" },
     { "code": "US", "name": "USA", "flag": "🇺🇸", "phoneCode": "+1" },
@@ -80,26 +79,20 @@ export class LoginComponent {
     { "code": "XK", "name": "Kosovo", "flag": "🇽🇰", "phoneCode": "+383" }
 ];
 
+    ref = SignupComponent
+    signUpForm:FormGroup;
+    constructor(){
+      let form = {
+        fname:new FormControl("",),
+        lname:new FormControl("",),
+        username:new FormControl("",),
+        phone:new FormControl<string>("")
+      }
+      this.signUpForm = new FormGroup(form,[Validators.required])
 
-  loginForm:FormGroup  
-  LoginComponentRef = LoginComponent;
-  constructor(){
-
-    let form = {
-      // country_code:new FormControl<string>("",[Validators.required]),
-      phone:new FormControl<string>("+91",[Validators.required,Validators.pattern(/^\+\d{1,3}\s\d{10}$/)]),
-      keepSignedIn:new FormControl<boolean>(true,[])    
     }
-    this.loginForm = new FormGroup(form);
-  }
 
-  // get country_code(){
-  //   return this.loginForm.get('country_code')
-  // }
-  // get phone(){
-  //   return this.loginForm.get('phone')
-  // }
-    collectData(){
-      console.log(this.loginForm)
+    display(){
+    
     }
 }

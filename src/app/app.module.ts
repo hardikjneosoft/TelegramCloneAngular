@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { AsideComponent } from './chat/aside/aside.component';
 import { FilesComponent } from './chat/aside/files/files.component';
 import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { LoginComponent } from './login/login.component';
     AsideComponent,
     FilesComponent,
     LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,  // dependenices modules 

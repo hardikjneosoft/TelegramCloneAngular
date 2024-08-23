@@ -15,8 +15,8 @@
 
         <div class="form-group">
             <label for="phone">Your phone number</label>
-            <input type="tel" id="phone" name="phone" formControlName="phone" [value]="ccode.value">
-            <div *ngIf="phone?.invalid" class="error-message">Please enter a valid phone number with country code.</div>
+            <input type="tel" id="phone" name="phone" [value]="ccode.value">
+            <!-- <div *ngIf="phone?.invalid" class="error-message">Please enter a valid phone number with country code.</div> -->
         </div>
 
         <button type="submit"><a href="./login-code.html"><i class="fas fa-paperclip"></i></a></button>

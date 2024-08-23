@@ -1,0 +1,121 @@
+
+    <div class="container">
+        <img src="img/Telegram_logo.svg.png" alt="Telegram Logo">
+        <h2>Telegram Signup</h2>
+        <p>Fill in the details to create your account.</p>
+        <form id="signup-form" [formGroup]="signUpForm">
+            <div class="form-group">
+                <label for="first-name">First Name</label>
+                <input type="text" id="first-name" name="first-name" formControlName="fname">
+            </div>
+            <div class="form-group">
+                <label for="last-name">Last Name</label>
+                <input type="text" id="last-name" name="last-name" formControlName="lname">
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" formControlName="username">
+            </div>
+
+
+
+            <div class="form-group">
+                <label for="country">Country</label>
+                <select #ccode id="country" name="country" (click)="display()">
+                    <option *ngFor="let country of ref.countries" [value]="country.phoneCode">{{country.flag}} {{country.name}}</option>
+                </select>
+            </div>
+
+
+            
+            <div class="form-group">{{ccode.value}}
+                <label for="phone">Your phone number</label>
+                <input type="tel"  [value]="ccode.value">
+            </div>
+
+            <button type="submit"><a href="./login-code.html"><i class="fas fa-arrow-right"></i></a></button>
+            <div class="checkbox-container">
+                <input type="checkbox" id="keep-signed-in" name="keep-signed-in" checked>
+                <label for="keep-signed-in">Keep me signed in</label>
+            </div>
+        </form>
+    </div>
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+
+    function checkEmpty(field, message) {
+        if ($(field).val().trim() === '') {
+            $(field).parent().addClass('has-error');
+            $(field).siblings('.error-message').remove(); 
+            $(field).after('<div class="error-message">' + message + '</div>');
+            return false;
+        } else {
+            $(field).parent().removeClass('has-error');
+            $(field).siblings('.error-message').remove(); 
+            return true;
+        }
+    }
+
+    function validatePhoneNumber() {
+        const phone = $('#phone').val().trim();
+        const phonePattern = /^\+\d{2} \d{10}$/; 
+        
+        if (!phonePattern.test(phone)) {
+            $('#phone').parent().addClass('has-error');
+            $('#phone').siblings('.error-message').remove(); 
+            $('#phone').after('<div class="error-message">Please enter a valid phone number with country code.</div>');
+            return false;
+        } else {
+            $('#phone').parent().removeClass('has-error');
+            $('#phone').siblings('.error-message').remove(); 
+            return true;
+        }
+    }
+
+    function validateUsername() {
+        const username = $('#username').val().trim();
+        if (username.length < 5) {
+            $('#username').parent().addClass('has-error');
+            $('#username').siblings('.error-message').remove();
+            $('#username').after('<div class="error-message">Username must be at least 5 characters long.</div>');
+            return false;
+        } else {
+            $('#username').parent().removeClass('has-error');
+            $('#username').siblings('.error-message').remove(); 
+            return true;
+        }
+    }
+
+    $('#first-name, #last-name, #username, #phone').on('blur', function() {
+        if (this.id === 'first-name') checkEmpty(this, 'First name is required.');
+        if (this.id === 'last-name') checkEmpty(this, 'Last name is required.');
+        if (this.id === 'username') validateUsername();
+        if (this.id === 'phone') validatePhoneNumber();
+    });
+
+    $('#signup-form').on('submit', function(e) {
+        e.preventDefault();
+        
+        let isValid = true;
+        
+        if (!checkEmpty('#first-name', 'First name is required.')) isValid = false;
+        if (!checkEmpty('#last-name', 'Last name is required.')) isValid = false;
+        if (!validatePhoneNumber()) isValid = false;
+        if (!validateUsername()) isValid = false;
+        
+        if (isValid) {
+            alert('Form is valid and ready to be submitted!');
+            // this.submit();
+            window.location.replace("./compressed/index.html")
+
+        } else {
+            alert('Please correct the errors in the form.');
+        }
+    });
+
+
+
+
+    </script>
+        <script src="navbar.js"></script>
+ -->

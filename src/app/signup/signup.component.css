@@ -1,0 +1,93 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+h3 {
+    margin: 0;
+}
+.container {
+    text-align: center;
+    background: white;
+    padding: 20px;
+    width: 22%;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+img {
+    width: 7rem;
+    margin-bottom: 10px;
+}
+.form-group {
+    position: relative;
+    margin: 20px 0;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 9px;
+    font-size: 16px;
+    box-sizing: border-box;
+    background-color: white;
+}
+.form-group label {
+    position: absolute;
+    top: -8px;
+    left: 10px;
+    background: white;
+    padding: 0 5px;
+    font-size: 12px;
+}
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.checkbox-container input {
+    width: auto;
+    margin: 0;
+    margin-right: 10px;
+}
+.link {
+    color: #0088cc;
+    text-decoration: none;
+}
+.link:hover {
+    text-decoration: underline;
+}
+.form-group input:hover, .form-group select:hover {
+    border-color: rgba(0, 128, 255, 0.905);
+}
+.form-group input:focus, .form-group select:focus {
+    border: 2px solid rgba(0, 128, 255, 0.905);
+    box-shadow: 0 0 5px rgba(0, 128, 255, 0.3);
+    outline: none;
+}
+i {
+    color: black;
+    font-size: 2rem;
+    font-weight: lighter;
+    padding-bottom: 10px;
+}
+.form-group.has-error input,
+.form-group.has-error select {
+    border-color: red;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+button{
+    border: none;
+    background-color: transparent;
+}
+
