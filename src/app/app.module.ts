@@ -7,7 +7,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NavbarLinkComponent } from './navbar/navbar-link/navbar-link.component';
 import { HomeComponent } from './home/home.component';
 import { ChatComponent } from './chat/chat.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AsideComponent } from './chat/aside/aside.component';
 import { FilesComponent } from './chat/aside/files/files.component';
@@ -28,7 +28,8 @@ import { LoginComponent } from './login/login.component';
     BrowserModule,  // dependenices modules 
     AppRoutingModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule,
   ],
   providers: [],  //services
   bootstrap: [AppComponent] //root component
