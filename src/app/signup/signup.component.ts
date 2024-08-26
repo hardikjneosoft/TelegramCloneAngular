@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
@@ -83,16 +83,34 @@ export class SignupComponent {
     signUpForm:FormGroup;
     constructor(){
       let form = {
-        fname:new FormControl("",),
-        lname:new FormControl("",),
-        username:new FormControl("",),
-        phone:new FormControl<string>("")
+        fname:new FormControl("",[Validators.required],),
+        lname:new FormControl("",[Validators.required]),
+        username:new FormControl("",[Validators.minLength(5),Validators.pattern(/^[a-zA-Z0-9]{5,}$/)],),
+        ccode:new FormControl("+91"),
+        phone:new FormControl("+91 ",[Validators.pattern(/^\+\d{1,3} \d{4,14}$/)],)
       }
-      this.signUpForm = new FormGroup(form,[Validators.required])
+      this.signUpForm = new FormGroup(form,)
 
     }
 
-    display(){
-    
+
+    get fname(){
+      return this.signUpForm.get('fname')
     }
+    get lname(){
+      return this.signUpForm.get('lname')
+    }
+    get username(){
+      return this.signUpForm.get('username')
+    }
+    get phone(){
+      return this.signUpForm.get('phone')
+    }
+
+    get ccode(){
+      return this.signUpForm.get('ccode')
+    }
+    display(){console.log(this.phone);
+    }
+
 }

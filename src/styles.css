@@ -19,11 +19,11 @@
 
 html {
     /* This font-size is for the chat page. It should be moved for that component specific */
-    /* font-size: 82.5%;      */
+    font-size: 82.5%;     
     scroll-behavior: smooth;
 }
 
 body {
     font-weight: 400;
-    /* overflow: hidden;  */
+    overflow: hidden; 
 }

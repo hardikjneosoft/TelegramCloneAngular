@@ -7,7 +7,6 @@ import { FormGroup,FormControl,ReactiveFormsModule,Validators } from '@angular/f
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  
   static countries = [
     { "code": "IN", "name": "India", "flag": "🇮🇳", "phoneCode": "+91" },
     { "code": "US", "name": "USA", "flag": "🇺🇸", "phoneCode": "+1" },
@@ -99,7 +98,7 @@ export class LoginComponent {
   // get phone(){
   //   return this.loginForm.get('phone')
   // }
-    collectData(){
-      console.log(this.loginForm)
+    collectData(loginForm:any){
+      console.log(loginForm)
     }
 }

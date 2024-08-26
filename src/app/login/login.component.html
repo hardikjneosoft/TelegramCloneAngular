@@ -4,25 +4,26 @@
     <img src="https://telegram.org/img/t_logo.png" alt="Telegram Logo">
     <h2>Telegram</h2>
     <p>Please confirm your country code and <br>enter your phone number.</p>
-    <form id="login-form" [formGroup]="loginForm" (submit)="collectData()" (change)="collectData()">
+    
+    <form #loginform="ngForm" id="login-form" (ngSubmit)="collectData(loginform)">
 
         <div class="form-group">
             <label for="country">Country</label>
-            <select #ccode id="country" name="country">
+            <select #ccode id="country" name="country" [ngModel]="'+91'" ngModel>
                 <option *ngFor="let country of LoginComponentRef.countries" [value]="country.phoneCode">{{ country.flag }} {{ country.name }}</option>
             </select>
         </div>
 
         <div class="form-group">
             <label for="phone">Your phone number</label>
-            <input type="tel" id="phone" name="phone" [value]="ccode.value">
-            <!-- <div *ngIf="phone?.invalid" class="error-message">Please enter a valid phone number with country code.</div> -->
+            <input type="tel" id="phone" name="phone" [value]="ccode.value" required #phone="ngModel" ngModel>
+            <div *ngIf="phone?.touched && phone?.invalid" class="error-message">Please enter a valid phone number with country code.</div>
         </div>
 
         <button type="submit"><a href="./login-code.html"><i class="fas fa-paperclip"></i></a></button>
 
         <div class="checkbox-container">
-            <input type="checkbox" id="keep-signed-in" name="keep-signed-in" formControlName ="keepSignedIn">
+            <input type="checkbox" id="keep-signed-in" name="keep-signed-in" ngModel>
             <label for="keep-signed-in">Keep me signed in</label>
         </div>
 

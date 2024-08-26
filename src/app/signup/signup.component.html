@@ -1,39 +1,47 @@
-
+<body>
     <div class="container">
         <img src="img/Telegram_logo.svg.png" alt="Telegram Logo">
         <h2>Telegram Signup</h2>
         <p>Fill in the details to create your account.</p>
-        <form id="signup-form" [formGroup]="signUpForm">
-            <div class="form-group">
+        <form id="signup-form" [formGroup]="signUpForm" >
+            <div [ngClass]="{'form-group':true,'has-error':fname?.hasError('required') && fname?.touched}">
                 <label for="first-name">First Name</label>
                 <input type="text" id="first-name" name="first-name" formControlName="fname">
+                <div class="error-message" *ngIf="fname?.touched && fname?.hasError('required')">First name is required.</div>
             </div>
-            <div class="form-group">
+
+            <div [ngClass]="{'form-group':true,'has-error':lname?.touched && lname?.hasError('required')}">
                 <label for="last-name">Last Name</label>
                 <input type="text" id="last-name" name="last-name" formControlName="lname">
+                <div class="error-message" *ngIf="lname?.touched && lname?.hasError('required')">Last name is required.</div>
             </div>
-            <div class="form-group">
+
+            <div [ngClass]="{'form-group':true,'has-error':(username?.invalid) && username?.touched}">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" formControlName="username">
+                <div class="error-message" *ngIf="username?.touched && username?.hasError('minlength') else username_pattern">Username should be atleast 5 charachter</div>
+                <ng-template #username_pattern> 
+                    <div class="error-message" *ngIf="username?.touched && username?.hasError('pattern')">Username can contain only alphanumeric charachters </div>
+                </ng-template>
             </div>
-
-
 
             <div class="form-group">
                 <label for="country">Country</label>
-                <select #ccode id="country" name="country" (click)="display()">
+                <select id="country" name="country" (click)="display()" formControlName="ccode">
                     <option *ngFor="let country of ref.countries" [value]="country.phoneCode">{{country.flag}} {{country.name}}</option>
                 </select>
             </div>
 
 
             
-            <div class="form-group">{{ccode.value}}
+            <div [ngClass]="{'form-group':true,'has-error':phone?.touched && phone?.invalid}">
                 <label for="phone">Your phone number</label>
-                <input type="tel"  [value]="ccode.value">
+                <input type="tel" [value]="ccode?.value+' '" formControlName="phone">
+                <div class="error-message" *ngIf="phone?.touched && phone?.hasError('pattern')">Please enter a valid phone number with a country code </div>
             </div>
 
-            <button type="submit"><a href="./login-code.html"><i class="fas fa-arrow-right"></i></a></button>
+            <button type="submit" [disabled]="signUpForm.invalid"><i class="fas fa-arrow-right"></i></button>
+
             <div class="checkbox-container">
                 <input type="checkbox" id="keep-signed-in" name="keep-signed-in" checked>
                 <label for="keep-signed-in">Keep me signed in</label>
@@ -119,3 +127,4 @@
     </script>
         <script src="navbar.js"></script>
  -->
+</body>
