@@ -13,6 +13,8 @@ import { AsideComponent } from './chat/aside/aside.component';
 import { FilesComponent } from './chat/aside/files/files.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { VerificationCodeComponent } from './verification-code/verification-code.component';
+import { UserService } from './custom-service/user.service';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { SignupComponent } from './signup/signup.component';
     FilesComponent,
     LoginComponent,
     SignupComponent,
+    VerificationCodeComponent,
   ],
   imports: [
     BrowserModule,  // dependenices modules 
@@ -33,7 +36,7 @@ import { SignupComponent } from './signup/signup.component';
     CommonModule,
     ReactiveFormsModule,
   ],
-  providers: [],  //services
+  providers: [UserService],  //services
   bootstrap: [AppComponent] //root component
 })
 export class AppModule { }

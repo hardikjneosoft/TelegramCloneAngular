@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-chat',
@@ -113,7 +114,9 @@ export class ChatComponent {
 
     inputText:string='';
     pfp='';name = '';lastSeen ='';messages:any=[]
-    constructor(){} 
+    constructor(private activeRouter:ActivatedRoute){
+        console.log(this.activeRouter)
+    } 
 
     sendMsg(msg:string){
         console.log("Message Sent!")

@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { ChatComponent } from './chat/chat.component';
+import { VerificationCodeComponent } from './verification-code/verification-code.component';
 
 const routes: Routes = [
   {
@@ -12,18 +14,35 @@ const routes: Routes = [
     // component:HomeComponent
   },
   {
+    path:'home',
+    component:HomeComponent 
+  },
+  {
     path:'login',
     component:LoginComponent,
+    children:[
+      {
+        path:'code',
+        component:VerificationCodeComponent
+      }
+    ]
   }
   ,
   {
     path:'signup',
-    component:SignupComponent
+    component:SignupComponent,
+    children:[
+      {
+        path:'code',
+        component:VerificationCodeComponent
+      }
+    ]
   },
   {
-    path:'home',
-    component:HomeComponent //change this
+    path:'chat/:userId',
+    component:ChatComponent
   }
+  
 ];
 
 @NgModule({
