@@ -14,7 +14,6 @@ import { FilesComponent } from './chat/aside/files/files.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { VerificationCodeComponent } from './verification-code/verification-code.component';
-import { UserService } from './custom-service/user.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +35,7 @@ import { UserService } from './custom-service/user.service';
     CommonModule,
     ReactiveFormsModule,
   ],
-  providers: [UserService],  //services
+  providers: [],  //services
   bootstrap: [AppComponent] //root component
 })
 export class AppModule { }

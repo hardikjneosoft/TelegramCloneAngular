@@ -20,8 +20,8 @@
             <div *ngIf="phone?.touched && phone?.invalid" class="error-message">Please enter a valid phone number with country code.</div>
         </div>
 
-        <button type="submit"><a [routerLink]="'chat/'+'1'"><i class="fas fa-paperclip"></i></a></button>
-
+        <button type="submit"><a [routerLink]="'../chat/'+'1'"><i class="fas fa-arrow-right"></i></a></button>
+            <span>                        <i class="fas fa-arrow-right"></i>            </span>
         <div class="checkbox-container">
             <input type="checkbox" id="keep-signed-in" name="keep-signed-in" ngModel>
             <label for="keep-signed-in">Keep me signed in</label>
@@ -29,7 +29,7 @@
 
     </form>
 </div>
-<script>
+<!-- <script>
         function validatePhoneNumber() {
             const phone = $('#phone').val().trim();
             
@@ -65,7 +65,7 @@
                 alert('Please correct the errors in the form.');
             }
         });
-</script>
+</script> -->
 
 
 </div>
