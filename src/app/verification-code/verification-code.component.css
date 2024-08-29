@@ -1,0 +1,45 @@
+.pdiv{
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+margin: 0;
+font-family: Arial, sans-serif;
+}
+.container {
+text-align: center;
+background: white;
+padding: 20px;
+width: 330px;
+border-radius: 8px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+input{
+outline: none;
+height: 40px;
+width: 300px;
+border-radius: 9px;
+}
+input:hover{
+border-color: rgba(0, 128, 255, 0.905);
+}
+input:focus{            
+border: 2px solid rgba(0, 128, 255, 0.905);
+}
+.fas{
+font-size: 3rem;
+position: relative;
+top: 10px;
+color:black;
+}
+input{
+padding: 12px;
+font-size: 2rem;
+font-stretch: semi-expanded;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

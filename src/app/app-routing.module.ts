@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ChatComponent } from './chat/chat.component';
 import { VerificationCodeComponent } from './verification-code/verification-code.component';
+import { loginGuardGuard } from './login-guard.guard';
 
 const routes: Routes = [
   {
@@ -39,8 +40,9 @@ const routes: Routes = [
     ]
   },
   {
-    path:'chat/:userId',
-    component:ChatComponent
+    path:'chat',
+    component:ChatComponent,
+    canActivate:[loginGuardGuard]
   }
   
 ];

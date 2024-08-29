@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup,FormControl,ReactiveFormsModule,Validators } from '@angular/forms';
+import { CheckLoginService } from '../check-login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -80,25 +82,18 @@ export class LoginComponent {
 ];
 
 
-  loginForm:FormGroup  
   LoginComponentRef = LoginComponent;
-  constructor(){
+  constructor(private login_service:CheckLoginService,public router:Router){}
 
-    let form = {
-      // country_code:new FormControl<string>("",[Validators.required]),
-      phone:new FormControl<string>("+91",[Validators.required,Validators.pattern(/^\+\d{1,3}\s\d{10}$/)]),
-      keepSignedIn:new FormControl<boolean>(true,[])    
+  logIn(loginForm:any){
+      const obs = this.login_service.(loginForm.value.phone)
+      obs.subscribe({
+        next:(data)=>{console.log(data);
+        },
+        error:(error)=>console.log(error)
+      })
+      this.router.navigate(['chat'])
     }
-    this.loginForm = new FormGroup(form);
-  }
 
-  // get country_code(){
-  //   return this.loginForm.get('country_code')
-  // }
-  // get phone(){
-  //   return this.loginForm.get('phone')
-  // }
-    collectData(loginForm:any){
-      console.log(loginForm)
-    }
+    
 }
