@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormGroup,FormControl,ReactiveFormsModule,Validators } from '@angular/forms';
-import { CheckLoginService } from '../check-login.service';
 import { Router } from '@angular/router';
 import { ServerService } from '../server/server.service';
 
@@ -92,13 +91,11 @@ export class LoginComponent {
   logIn(loginForm:any){
       const obs = this.server.logIn(loginForm.value.phone)
       obs.subscribe({
-        next:(data)=>{console.log(data);
+        next:(data)=>{
+          console.log(data);
           this.router.navigate(['code'])
         },
-        error:(error)=>console.log(error)
-      })
-      
-    }
-
-    
+        error:(error)=>{console.log(error)}
+      }) 
+    }  
 }

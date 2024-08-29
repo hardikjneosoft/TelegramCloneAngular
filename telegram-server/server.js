@@ -1,6 +1,6 @@
 const express = require('express');
 const http = require('http');
-const socketIo = require('socket.io');
+const {Server,socketIo} = require('socket.io');
 const cors = require('cors');
 const { send } = require('process');
 const multer = require('multer')
@@ -8,31 +8,57 @@ const upload = multer()
 
 const app = express();
 const server = http.createServer(app);
-const io = socketIo(server);
+const io = new Server(server,{
+  cors: {
+    origin: "*", // Replace with the origin you want to allow
+    methods: ["GET", "POST"],
+  }});
 
-app.use(cors({
-  origin: '*', 
-  methods: ['GET', 'POST'],
-  credentials: true 
-}));
+const otps={}
+// app.use(cors({
+  // origin: '*', 
+  // methods: ['GET', 'POST'],
+  // credentials: true 
+// }));
 
 app.use(express.json());
-app.use(cors({origin:"*"}))
-
-
-
-
-
-
-
-app.post('/file',upload.single('pfp'),(req,res)=>{
-  console.log(req.files,req.file)
-})
-
+// app.use(cors({origin:"*"}))
 
 
 app.get('/', (req, res) => {
-    res.status(200).send('Server is running...')
+    res.send(`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.io Connection</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Replace 'YOUR_SERVER_IP' with the IP address of your Socket.io server
+            const serverIp = 'http://localhost:5000';
+            const socket = io(serverIp); // Replace PORT with your server port
+
+            // Event listeners for socket events
+            socket.on('connect', function() {
+                console.log('Connected to server');
+            });
+
+            socket.on('message', function(data) {
+                console.log('Message received:', data);
+            });
+
+            // Example: Emit a message to the server
+            socket.emit('message', 'Hello, Server!');
+        });
+    </script>
+</head>
+<body>
+    <h1>Socket.io Connection Example</h1>
+</body>
+</html>
+`)
+    // res.status(200).send('Server is running...')
 });
 
 getUserByPhone = function(phone_no){
@@ -51,7 +77,7 @@ app.post('/sendOtp',(req,res)=>{
     if (user){
     const { phoneNumber } = req.body;
     const otp = Math.floor(100000 + Math.random() * 900000).toString(); 
-    // otps[phoneNumber] = otp; 
+    otps[phoneNumber] = otp; 
     sendOtpToPhone(phoneNumber, otp); 
 
     res.json({ message: 'OTP sent successfully' })
@@ -63,12 +89,12 @@ app.post('/sendOtp',(req,res)=>{
 
 app.post('/verifyOtp',(req,res)=>{
   const {otp,phoneNumber} = req.body;
-  if (otp===ops[phoneNumber]){
+  if (otp===otps[phoneNumber]){
     delete otps[phoneNumber];
-    res.status(200).redirect('chat')
+    res.status(200)
   }
   else{
-    res.status(401).json(['Invalid OTP'])
+    res.status(401).send('Invalid OTP')
   }
 })
 

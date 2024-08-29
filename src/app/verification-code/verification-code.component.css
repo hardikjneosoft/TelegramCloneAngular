@@ -21,9 +21,11 @@ margin: 0;
 }
 input{
 outline: none;
-height: 40px;
+height: 60px;
 width: 300px;
+letter-spacing: 0.5em;
 border-radius: 9px;
+text-align: center;
 }
 input:hover{
 border-color: rgba(0, 128, 255, 0.905);
@@ -39,7 +41,7 @@ color:black;
 }
 input{
 padding: 12px;
-font-size: 2rem;
-font-stretch: semi-expanded;
+font-size: 3rem;
+font-stretch: expanded;
 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

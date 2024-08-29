@@ -1,12 +1,12 @@
 import { inject } from '@angular/core';
-import { CheckLoginService } from './check-login.service';
 import { Router } from '@angular/router';
+import { ServerService } from './server/server.service';
 
 export function loginGuardGuard ():boolean{
 
   const router = inject(Router)
-  const check_login= inject(CheckLoginService)
-  if(check_login.isLoggedIn){
+  const server= inject(ServerService)
+  if(server.loggedIn){
     console.log('true');
     return true
   }

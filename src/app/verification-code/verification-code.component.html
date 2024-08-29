@@ -3,11 +3,11 @@
 <div class="pdiv">
    <div class="container">
       <img src="img/monke.png" />
-      <!-- <h2>+91 7400 288 151</h2> -->
+      <h2>{{phone}}</h2>
       <h4>We've sent the code to your phone number</h4>
       <div>
-      <input type="number" maxlength="4" />
-      <i class="fas fa-arrow-right"></i>
+      <input #field type="number" (input)="monitorInput(field)" />
+      <div (click)="verifyOtp(field.value)"><i class="fas fa-arrow-right"></i></div>
       </div>
    </div>
 </div>
