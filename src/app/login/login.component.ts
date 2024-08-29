@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup,FormControl,ReactiveFormsModule,Validators } from '@angular/forms';
 import { CheckLoginService } from '../check-login.service';
 import { Router } from '@angular/router';
+import { ServerService } from '../server/server.service';
 
 @Component({
   selector: 'app-login',
@@ -83,16 +84,20 @@ export class LoginComponent {
 
 
   LoginComponentRef = LoginComponent;
-  constructor(private login_service:CheckLoginService,public router:Router){}
+  constructor(
+    // private login_service:CheckLoginService,
+    private server:ServerService,
+    public router:Router){}
 
   logIn(loginForm:any){
-      const obs = this.login_service.(loginForm.value.phone)
+      const obs = this.server.logIn(loginForm.value.phone)
       obs.subscribe({
         next:(data)=>{console.log(data);
+          this.router.navigate(['code'])
         },
         error:(error)=>console.log(error)
       })
-      this.router.navigate(['chat'])
+      
     }
 
     

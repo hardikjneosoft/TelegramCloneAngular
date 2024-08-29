@@ -1,0 +1,28 @@
+import { insertMessage } from '../db/sql-db';
+
+const io = require('socket.io')(server, {
+    cors: {
+      origin: "*",
+      methods: ["GET", "POST"],
+      credentials: true
+    }
+  });
+
+
+io.on('connection',(socket)=>{
+    registerSocketEvents(socket)
+})
+
+registerSocketEvents = (socket)=>{
+    
+    socket.on('c2s message',(data)=>{
+        const {roomId,sender,content} = data;
+        insertMessage(roomId,sender,content)
+        io.to(roomId).emit('recieved Message',{'sender':sender,'content':content})
+    })
+    
+    
+    socket.on('disconnect', () => {
+        console.log('User disconnected');
+      })
+}

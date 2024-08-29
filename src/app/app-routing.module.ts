@@ -21,14 +21,12 @@ const routes: Routes = [
   {
     path:'login',
     component:LoginComponent,
-    children:[
-      {
-        path:'code',
-        component:VerificationCodeComponent
-      }
-    ]
-  }
-  ,
+  },
+  {
+    path:'code',
+    component:VerificationCodeComponent
+  },
+
   {
     path:'signup',
     component:SignupComponent,
