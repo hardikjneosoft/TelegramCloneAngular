@@ -6,6 +6,8 @@ const app = express();
 const server = http.createServer(app);
 
 const db = require('./db')
+db.initDB()
+const sql = db.sql
 
 const io = new Server(server,{
   cors: {
@@ -14,6 +16,7 @@ const io = new Server(server,{
   }});
 
 const otps={}
+
 app.use(cors({
   origin: '*', 
   methods: ['GET', 'POST'],
@@ -21,11 +24,12 @@ app.use(cors({
 }));
 
 app.use(express.json());
+app.use(express.urlencoded({extended:true}))
 
 
-app.get('/', (req, res) => {
-    res.send('Server is running')
-    // res.status(200).send('Server is running...')
+app.get('/', async (req, res) => {
+    const users= await sql.getAllUsers()
+    res.json(users)
 });
 
 getUserByPhone = function(phone_no){
@@ -34,13 +38,15 @@ getUserByPhone = function(phone_no){
 
 sendOtpToPhone = function(phone_no,otp){
   console.log(otp);
-  
+ 
 }
-app.post('/sendOtp',(req,res)=>{
+
+
+app.post('/login/otp',async (req,res)=>{
     const {phone_no} = req.body;
-    console.log(req.body);
-    
-    user = getUserByPhone(phone_no);
+    console.log(phone_no)
+    user = await sql.userExists(phone_no);
+    console.log(user)
     if (user){
     const { phoneNumber } = req.body;
     const otp = Math.floor(100000 + Math.random() * 900000).toString(); 
@@ -54,31 +60,50 @@ app.post('/sendOtp',(req,res)=>{
     }
 })
 
-app.post('/verifyOtp',(req,res)=>{
+app.post('/login/verify/otp',(req,res)=>{
   const {otp,phoneNumber} = req.body;
-  if (otp===otps[phoneNumber]){
+  if (true||otp===otps[phoneNumber]){
     delete otps[phoneNumber];
-    res.status(200)
+    res.status(200).json(['Done'])
   }
   else{
     res.status(401).send('Invalid OTP')
   }
 })
 
-app.post('/signup',(req,res)=>{
-  const {fname,lname,username,phone,} = req.body;
-  const user = createUser(fname,lname,username,phone);
-  if (user){
-    const { phoneNumber } = req.body;
+app.post('/signup/otp',async (req,res)=>{
+  const {phone} = req.body;
+  const user = await sql.userExists(phone)
+  if (!user){
+    const { phone } = req.body;
     const otp = Math.floor(100000 + Math.random() * 900000).toString(); 
-    otps[phoneNumber] = otp; 
-    sendOtpToPhone(phoneNumber, otp); 
-
+    otps[phone] = otp; 
+    sendOtpToPhone(phone, otp); 
     res.json({ message: 'OTP sent successfully' })
     }
     else{
       res.status(401).json(['Phone number already registered. '])
     }
+})
+
+app.post('/signup/verify/otp',async(req,res)=>{
+  const {user,otp} = req.body;
+  const {fname,lname,username,phone} = user
+  const user_exists = await sql.userExists(phone)  
+  if (user_exists){
+    res.status(401).json(['Phone number already registered. '])
+  }
+  else{
+    if (otp===otps[phone]){
+      delete otps[phone];
+      const result = await sql.createUser(fname,lname,username,phone)
+      console.log(result)
+      res.status(200).json(['OTP is correct'])
+    }
+    else{
+      res.status(401).json(['Invalid OTP']);
+    }
+  }
 })
 
 

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+import { ServerService } from '../server/server.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -81,18 +83,27 @@ export class SignupComponent {
 
     ref = SignupComponent
     signUpForm:FormGroup;
-    constructor(){
+    constructor(private server:ServerService,private router:Router){
       let form = {
-        fname:new FormControl("",[Validators.required],),
-        lname:new FormControl("",[Validators.required]),
-        username:new FormControl("",[Validators.minLength(5),Validators.pattern(/^[a-zA-Z0-9]{5,}$/)],),
+        fname:new FormControl("Hardik",[Validators.required],),
+        lname:new FormControl("Jain",[Validators.required]),
+        username:new FormControl("hardikjain",[Validators.minLength(5),Validators.pattern(/^[a-zA-Z0-9]{5,}$/)],),
         ccode:new FormControl("+91"),
-        phone:new FormControl("+91 ",[Validators.pattern(/^\+\d{1,3} \d{4,14}$/)],)
+        phone:new FormControl("+91 7400288151",[Validators.pattern(/^\+\d{1,3} \d{4,14}$/)],)
       }
       this.signUpForm = new FormGroup(form,)
 
     }
 
+    OnSubmit(){
+      const obs = this.server.signUp(this.signUpForm.value)
+      
+      obs.subscribe({
+        next:next=>this.router.navigate(['code']),
+        error:error=>console.log(error)
+      })
+      // console.log(this.signUpForm)
+    }
 
     get fname(){
       return this.signUpForm.get('fname')

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ServerService } from '../server/server.service';
 
 @Component({
   selector: 'app-chat',
@@ -114,8 +115,9 @@ export class ChatComponent {
 
     inputText:string='';
     pfp='';name = '';lastSeen ='';messages:any=[]
-    constructor(private activeRouter:ActivatedRoute){
+    constructor(private activeRouter:ActivatedRoute,private server:ServerService){
         console.log(this.activeRouter)
+        this.server.initSocket()
     } 
 
     sendMsg(msg:string){

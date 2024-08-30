@@ -1,7 +1,11 @@
-const {connectDB,getAllUsers} = require('./sql-api')
+const sql = require('./sql-api')
+
 
 async function initDB(){
-    const connection = await connectDB()
-    getAllUsers(connection)
+    await sql.connectDB()
 }
-initDB()
+
+module.exports = {
+    initDB,
+    sql
+}

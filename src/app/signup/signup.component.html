@@ -3,7 +3,7 @@
         <img src="img/Telegram_logo.svg.png" alt="Telegram Logo">
         <h2>Telegram Signup</h2>
         <p>Fill in the details to create your account.</p>
-        <form id="signup-form" [formGroup]="signUpForm" >
+        <form id="signup-form" [formGroup]="signUpForm" (ngSubmit)="OnSubmit()">
             <div [ngClass]="{'form-group':true,'has-error':fname?.hasError('required') && fname?.touched}">
                 <label for="first-name">First Name</label>
                 <input type="text" id="first-name" name="first-name" formControlName="fname">

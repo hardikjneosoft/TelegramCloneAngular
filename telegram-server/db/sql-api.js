@@ -1,25 +1,8 @@
 const mysql = require("mysql2/promise")
-
-// const multer = require('multer')
-// const storage = multer.memoryStorage()
-// upload = multer({storage:storage})
-
-// const express = require("express");
-// const {
-//   getAllUsers,
-//   createUser,
-//   deleteUserById,
-//   updateUser,
-//   getUserById,
-//   showImage
-// } = require("./sql-db");
-// const { connection } = require("mongoose");
-
-let mysqlDB;
-
+let connection;
 async function connectDB() {
   try {
-    let connection = await mysql.createConnection({
+    connection = await mysql.createConnection({
       host: "localhost",
       user: "root",
       password: "hjhf1729",
@@ -33,28 +16,28 @@ async function connectDB() {
   }
 };
 
+async function userExists(phone_number) {
+  const sql = `Select * FROM Users WHERE phonenumber = ?;`
+  const  [result] = await connection.query(sql,[phone_number])
+  return result.length
+}
 
-
-
-
-async function createUser(connection,id,fname, lname, username, phonenumber, passwordHash,pfp) {
+async function createUser(fname, lname, username, phonenumber) {
   const sql = `
-    INSERT INTO Users (userid,fname, lname, username, phonenumber, password_hash,profile_pic_url)
-    VALUES (?, ?, ?, ?, ?,?,?)
+    INSERT INTO Users (fname, lname, username, phonenumber)
+    VALUES (?, ?, ?, ?)
   `;
-  const [result] = await connection.query(sql, [id,fname, lname, username, phonenumber, passwordHash,pfp]);
+  const [result] = await connection.query(sql, [fname, lname, username, phonenumber]);
   return result.insertId;
 }
 
-async function getAllUsers(connection){
+async function getAllUsers(){
 const sql = `select * from Users`;
 const [rows] = await connection.query(sql);
-console.log(rows);
-
 return rows;
 }
 
-async function getUserById(connection,userid) {
+async function getUserById(userid) {
   const sql = `
     SELECT * FROM Users WHERE userid = ?
   `;
@@ -62,7 +45,7 @@ async function getUserById(connection,userid) {
   return rows[0];
 }
 
-async function updateUser(connection,fields) {
+async function updateUser(fields) {
   
   // const clause= Object.keys(fields).map(field=>` ${field}= ${fields[field]}`).join(', ')
   const sql = 'UPDATE Users SET ? WHERE userid = ?';
@@ -80,7 +63,7 @@ async function updateUserLastSeen(userid, lastSeen) {
   return result.affectedRows;
 }
 
-async function deleteUserById(connection,userid) {
+async function deleteUserById(userid) {
   const sql = `
     DELETE FROM Users WHERE userid = ?
   `;
@@ -88,7 +71,7 @@ async function deleteUserById(connection,userid) {
   return result.affectedRows;
 }
 
-async function showImage(connection) {
+async function showImage(){
   const query = 'SELECT profile_pic_url FROM Users WHERE userid = 787878787';
   const results = await connection.query(query)
 
@@ -97,13 +80,13 @@ async function showImage(connection) {
     return imageData
 }
 
-async function getRoomMessages(connection,roomId){
+async function getRoomMessages(roomId){
   const query= `Select * from Messages where room_id = ?`
   const [result] = await connection.query(sql,roomId)
   return result.affectedRows
 }
 
-async function insertMessage(connection,room_id,sender,content){
+async function insertMessage(room_id,sender,content){
   const query = `insert into Messages(room_id,sender,content) values(?,?,?)`
   const [result] = await connection.query.sql(sql,room_id,sender,content)
 }
@@ -119,8 +102,12 @@ updateUser,
 getRoomMessages,
 insertMessage,
 updateUserLastSeen,
-connectDB
+connectDB,
+userExists,
+connection
 }
+
+
 
 
 // const app = express();
@@ -201,3 +188,6 @@ connectDB
 
 //   console.log('Server running on port:',PORT);
 // });
+
+
+  

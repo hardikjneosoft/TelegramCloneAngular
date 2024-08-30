@@ -24,7 +24,7 @@ export class VerificationCodeComponent {
         error:error=>{
           this.server.loggedIn = true
           this.server.phone = this.phone
-          this.router.navigate(['chat'])
+          // this.router.navigate(['chat'])
         }
       }) 
     }
