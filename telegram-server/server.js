@@ -1,13 +1,12 @@
 const express = require('express');
 const http = require('http');
-const {Server,socketIo} = require('socket.io');
+const {Server} = require('socket.io');
 const cors = require('cors');
-const { send } = require('process');
-const multer = require('multer')
-const upload = multer()
-
 const app = express();
 const server = http.createServer(app);
+
+const db = require('./db')
+
 const io = new Server(server,{
   cors: {
     origin: "*", // Replace with the origin you want to allow
@@ -15,53 +14,22 @@ const io = new Server(server,{
   }});
 
 const otps={}
-// app.use(cors({
-  // origin: '*', 
-  // methods: ['GET', 'POST'],
+app.use(cors({
+  origin: '*', 
+  methods: ['GET', 'POST'],
   // credentials: true 
-// }));
+}));
 
 app.use(express.json());
 
 
 app.get('/', (req, res) => {
-    res.send(`<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Socket.io Connection</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Replace 'YOUR_SERVER_IP' with the IP address of your Socket.io server
-            const serverIp = 'http://localhost:5000';
-            const socket = io(serverIp); // Replace PORT with your server port
-
-            // Event listeners for socket events
-            socket.on('connect', function() {
-                console.log('Connected to server');
-            });
-
-            socket.on('message', function(data) {
-                console.log('Message received:', data);
-            });
-
-            // Example: Emit a message to the server
-            socket.emit('message', 'Hello, Server!');
-        });
-    </script>
-</head>
-<body>
-    <h1>Socket.io Connection Example</h1>
-</body>
-</html>
-`)
+    res.send('Server is running')
     // res.status(200).send('Server is running...')
 });
 
 getUserByPhone = function(phone_no){
-  return phone_no == '+91 7400288151'
+  return true
 }
 
 sendOtpToPhone = function(phone_no,otp){
@@ -106,7 +74,7 @@ app.post('/signup',(req,res)=>{
     otps[phoneNumber] = otp; 
     sendOtpToPhone(phoneNumber, otp); 
 
-    res.json({ message: 'OTP sent successfully' }).redirect('verification-code')
+    res.json({ message: 'OTP sent successfully' })
     }
     else{
       res.status(401).json(['Phone number already registered. '])
@@ -128,5 +96,7 @@ io.on('connection', (socket) => {
   
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5500;
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+module.exports = {}
