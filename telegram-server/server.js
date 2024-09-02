@@ -82,22 +82,24 @@ app.post('/signup/otp',async (req,res)=>{
     res.json({ message: 'OTP sent successfully' })
     }
     else{
-      res.status(401).json(['Phone number already registered. '])
+      res.status(401).json({message:'Phone number already registered. '})
     }
 })
 
 app.post('/signup/verify/otp',async(req,res)=>{
-  const {user,otp} = req.body;
+  console.log(req.body)
+  const {user,otp_} = req.body;
   const {fname,lname,username,phone} = user
-  const user_exists = await sql.userExists(phone)  
+  const user_exists = await sql.userExists(phone) 
+  console.log(user_exists) 
   if (user_exists){
     res.status(401).json(['Phone number already registered. '])
   }
   else{
-    if (otp===otps[phone]){
+    console.log("inside")
+    if (otp_==otps[phone]){
       delete otps[phone];
       const result = await sql.createUser(fname,lname,username,phone)
-      console.log(result)
       res.status(200).json(['OTP is correct'])
     }
     else{

@@ -1,0 +1,50 @@
+-- CREATE TABLE Users (
+--     userid INT PRIMARY KEY AUTO_INCREMENT,
+--     fname VARCHAR(50) NOT NULL,
+--     lname VARCHAR(50) NOT NULL,
+--     username VARCHAR(50), -- Optional
+--     phonenumber VARCHAR(15) UNIQUE NOT NULL,
+--     password_hash VARCHAR(255), -- Optional, assuming password is stored as a hash
+--     last_seen DATETIME
+-- );
+
+-- CREATE TABLE Rooms (
+--     roomid INT PRIMARY KEY AUTO_INCREMENT,
+--     room_type VARCHAR(20) NOT NULL, -- For example: 'private', 'group'
+--     room_name VARCHAR(100) NOT NULL,
+--     room_username VARCHAR(50) -- Optional
+-- );
+
+-- CREATE TABLE Messages (
+--     msg_id INT PRIMARY KEY AUTO_INCREMENT,
+--     room_id INT NOT NULL,
+--     sender INT NOT NULL, -- User ID of the sender
+--     content TEXT NOT NULL, -- Assuming messages contain some content
+--     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+--     seen BOOLEAN DEFAULT FALSE,
+--     FOREIGN KEY (room_id) REFERENCES Rooms(roomid),
+--     FOREIGN KEY (sender) REFERENCES Users(userid)
+-- );
+
+
+-- CREATE TABLE RoomMembers (
+--     roomid INT NOT NULL,
+--     userid INT NOT NULL,
+--     PRIMARY KEY (roomid, userid),
+--     FOREIGN KEY (roomid) REFERENCES Rooms(roomid),
+--     FOREIGN KEY (userid) REFERENCES Users(userid)
+-- );
+-- -- 
+
+-- INSERT INTO Users (fname, lname, username, phonenumber, password_hash, last_seen) VALUES  ('John', 'Doe', 'john_doe', '1234567890', 'hashed_password1', '2024-08-01 12:00:00'),
+-- ('Jane', 'Smith', 'jane_smith', '0987654321', 'hashed_password2', '2024-08-02 14:30:00'),
+-- ('Alice', 'Johnson', NULL, '1122334455', NULL, NULL),
+-- ('Bob', 'Brown', 'bob_brown', '5566778899', 'hashed_password3', '2024-08-03 09:45:00');
+
+-- use Telegram;
+
+--  select * from Users;
+-- ALTER TABLE Users AUTO_INCREMENT = 1
+
+
+show tables

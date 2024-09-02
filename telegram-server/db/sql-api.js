@@ -45,6 +45,20 @@ async function getUserById(userid) {
   return rows[0];
 }
 
+async function getFriends(userid){
+  const sql = `
+  select userid,roomid from Rooms where roomid in (Select roomid from Rooms where userid = ?)
+  `
+  const [rows] = await connection.query(sql, [userid]);
+  return rows
+}
+
+async function getMessages(roomid){
+  const sql = `select * from Messages where roomid=?`
+  const [rows]= await connection.query(sql,[roomid])
+  return rows
+}
+
 async function updateUser(fields) {
   
   // const clause= Object.keys(fields).map(field=>` ${field}= ${fields[field]}`).join(', ')
@@ -104,6 +118,8 @@ insertMessage,
 updateUserLastSeen,
 connectDB,
 userExists,
+getMessages,
+getFriends,
 connection
 }
 

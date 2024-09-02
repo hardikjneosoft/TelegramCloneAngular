@@ -113,8 +113,15 @@ export class ChatComponent {
         }
                     ]
 
+    
     inputText:string='';
-    pfp='';name = '';lastSeen ='';messages:any=[]
+    dm = {
+        id:null,
+        pfp:'',
+        name:'',
+        lastSeen:'',
+        messages:[]
+    }
     constructor(private activeRouter:ActivatedRoute,private server:ServerService){
         console.log(this.activeRouter)
         this.server.initSocket()

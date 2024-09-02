@@ -14,14 +14,16 @@ export class VerificationCodeComponent {
     constructor (private server:ServerService,private router:Router){}
 
     verifyOtp(otp:string){
-      console.log(otp);
       const obs = this.server.verifyOtp(this.phone,otp)
       obs.subscribe({
         next:success=>{
+          console.log(success);
+          
           this.server.loggedIn = true
           this.router.navigate(['chat'])
         },
         error:error=>{
+          console.log(error)
           this.server.loggedIn = true
           this.server.phone = this.phone
           // this.router.navigate(['chat'])
