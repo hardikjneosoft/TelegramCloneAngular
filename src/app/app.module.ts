@@ -16,6 +16,8 @@ import { SignupComponent } from './signup/signup.component';
 import { VerificationCodeComponent } from './verification-code/verification-code.component';
 import { provideHttpClient } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatMenuTrigger,MatMenu } from '@angular/material/menu';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +37,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     FormsModule,
     CommonModule,
     ReactiveFormsModule,
+    MatMenuTrigger,MatMenu
   ],
   providers: [provideHttpClient(), provideAnimationsAsync()],  //services
   bootstrap: [AppComponent] //root component

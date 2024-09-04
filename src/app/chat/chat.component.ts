@@ -89,5 +89,12 @@ export class ChatComponent implements OnInit{
         // <i class="fa-duotone fa-solid fa-file" style="--fa-primary-color: #347af4; --fa-primary-opacity: 1; --fa-secondary-color: #347af4; --fa-secondary-opacity: 0.7;"></i>
     }
 
+    editMessage(message:any){
+
+    }
+    deleteMessage(message:any){
+
+    }
+
     
 }
