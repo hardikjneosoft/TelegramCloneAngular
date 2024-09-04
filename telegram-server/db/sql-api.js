@@ -106,6 +106,24 @@ async function insertMessage(room_id,sender,content){
 }
 
 
+async function getImage(imageId) {
+  const sql = 'SELECT image_data FROM Images WHERE id = ?';
+  const [rows] = await connection.query(sql, [imageId]);
+    return rows[0].image_data;
+  }
+
+
+async function removeImage(imageId) {
+  const sql = 'UPDATE Images SET image_data = NULL WHERE id = ?';
+  await connection.query(sql, [imageId]);
+}
+
+async function updateImage(imageId, newImageData) {
+  const sql = 'UPDATE Images SET image_data = ? WHERE id = ?';
+  await connection.query(sql, [newImageData, imageId]);
+}
+
+
 module.exports = {
 createUser,
 deleteUserById,
@@ -120,6 +138,9 @@ connectDB,
 userExists,
 getMessages,
 getFriends,
+getImage,
+removeImage,
+updateImage,
 connection
 }
 

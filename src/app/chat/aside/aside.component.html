@@ -2,12 +2,12 @@
     <div class="header-container">
         <div [ngClass]="{'header':true,'focus':filesOpen}">
             <div class="toggle-button" (click)="filesOpen?filesOpen=false:settingsOpen=true">
-                <i class="fas fa-bars"> </i>  
+                <i class="fas fa-bars" (click)="openProfileImageTab()"> </i>  
                 <i class="fas fa-arrow-left"></i>
             </div>
             <div class="search-box">
                 <i class="fas fa-search"></i>
-                <input #searchBar type="text" placeholder="Search" (click)="filesOpen=true">
+                <input #searchBar type="text" placeholder="Search" (click)="filesOpen=true" [(ngModel)]="searchQuery" (keydown)="filterUserIds()">
             </div>
         </div>
     </div>
@@ -33,7 +33,7 @@
         </div>
     </div>
 
-    <app-files [ngClass]="{'active':filesOpen}"></app-files>
+    <!-- <app-files [ngClass]="{'active':filesOpen}"></app-files> -->
 
     <div class="pen">
         <i class="fas fa-pen"></i>

@@ -5,7 +5,7 @@ import { ChatData } from './chatDataInterface';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrl: './chat.component.css'
+  styleUrl: './chat.component.css',
 })
 export class ChatComponent implements OnInit{
     
@@ -88,13 +88,8 @@ export class ChatComponent implements OnInit{
         
         // <i class="fa-duotone fa-solid fa-file" style="--fa-primary-color: #347af4; --fa-primary-opacity: 1; --fa-secondary-color: #347af4; --fa-secondary-opacity: 0.7;"></i>
     }
-
-    editMessage(message:any){
-
-    }
-    deleteMessage(message:any){
-
-    }
+    
+    
 
     
 }

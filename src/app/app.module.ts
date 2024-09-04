@@ -16,7 +16,8 @@ import { SignupComponent } from './signup/signup.component';
 import { VerificationCodeComponent } from './verification-code/verification-code.component';
 import { provideHttpClient } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { MatMenuTrigger,MatMenu } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { ProfileImageComponent } from './profile-image/profile-image.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { MatMenuTrigger,MatMenu } from '@angular/material/menu';
     LoginComponent,
     SignupComponent,
     VerificationCodeComponent,
+    ProfileImageComponent,
   ],
   imports: [
     BrowserModule,  // dependenices modules 
@@ -37,7 +39,7 @@ import { MatMenuTrigger,MatMenu } from '@angular/material/menu';
     FormsModule,
     CommonModule,
     ReactiveFormsModule,
-    MatMenuTrigger,MatMenu
+    MatIconModule
   ],
   providers: [provideHttpClient(), provideAnimationsAsync()],  //services
   bootstrap: [AppComponent] //root component
