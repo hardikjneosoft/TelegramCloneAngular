@@ -14,7 +14,7 @@ export class ServerService {
     username:'',
     phone:''
   }
-  loggedIn= true
+  loggedIn= false
   signingUp = false
   socket:Socket | undefined
   constructor(private http:HttpClient) {

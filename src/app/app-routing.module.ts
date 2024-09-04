@@ -13,8 +13,8 @@ const routes: Routes = [
   {
     path:"",
     pathMatch:"full",
-    // redirectTo:'home',
-    redirectTo:"chat",
+    redirectTo:'home',
+    // redirectTo:"chat",
     // component:HomeComponent
   },
   {
