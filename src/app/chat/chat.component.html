@@ -1,14 +1,14 @@
 <main>
-    <app-aside [chatData]="chatData" (setChatBoxEmitter)="setChatBox($event)"></app-aside>
+    <app-aside *ngIf="chatData" [chatData]="chatData" (setChatBoxEmitter)="setChatBox($event)"></app-aside>
     <section class="content">
         <div class="container active" id="chatBox">
             <div class="content-header">
                 <div class="image">
-                    <img [src]="pfp" alt="">
+                    <img [src]="dm.pfp" alt="">
                 </div>
                 <div class="details">
-                    <h3>{{name}}</h3>
-                    <span>{{lastSeen}} </span>
+                    <h3>{{dm.name}}</h3>
+                    <span>{{dm.lastSeen}} </span>
                 </div>
                 <div class="icons">
                     <div class="fas fa-phone-alt"></div>
@@ -17,7 +17,8 @@
                 </div>
             </div>
             <div class="chat-container">
-                <div *ngFor="let msg of messages" class="chat-msg sent">
+                <div *ngFor="let msg of dm.messages" class="chat-msg sent">
+                    <!-- <i class="fa-duotone fa-solid fa-file fa-xl" style="--fa-primary-color: #347af4; --fa-primary-opacity: 1; --fa-secondary-color: #347af4; --fa-secondary-opacity: 0.7;"></i> -->
                     <p>{{msg}}</p>
                     <span class="time">5:32 PM</span>
                 </div>
@@ -25,7 +26,10 @@
             </div>
             <div class="message-box">
                 <div class="message-content">
-                    <i class="fas fa-paperclip"></i>
+                    <button class="file-btn"(click)="inputFile.click()">
+                        <i class="fas fa-paperclip"></i>
+                    </button>
+                    <input multiple #inputFile (change)="sendFile($event)" type="file" style="display: none;"/>
                         <input #newMsg type="text" placeholder="Type your message here" [(ngModel)]="inputText" (keyup.enter)="newMsg.value?sendMsg(newMsg.value):null"/>
                         <i class="far fa-smile"></i>
                         <i class="fas fa-microphone" [ngStyle]="inputText.trim()?{opacity:0}:{opcaity:1}"></i>

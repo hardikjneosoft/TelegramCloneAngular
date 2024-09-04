@@ -8,10 +8,12 @@ import { VerificationCodeComponent } from './verification-code/verification-code
 import { loginGuardGuard } from './login-guard.guard';
 
 const routes: Routes = [
+  
   {
     path:"",
     pathMatch:"full",
-    redirectTo:'home',
+    // redirectTo:'home',
+    redirectTo:"chat",
     // component:HomeComponent
   },
   {

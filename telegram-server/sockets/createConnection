@@ -1,18 +1,5 @@
-import { insertMessage } from '../db/sql-db';
-
-const io = require('socket.io')(server, {
-    cors: {
-      origin: "*",
-      methods: ["GET", "POST"],
-      credentials: true
-    }
-  });
-
-
-io.on('connection',(socket)=>{
-    registerSocketEvents(socket)
-})
-
+const { insertMessage } =require('../db')
+let io;
 registerSocketEvents = (socket)=>{
     
     socket.on('c2s message',(data)=>{
@@ -25,4 +12,23 @@ registerSocketEvents = (socket)=>{
     socket.on('disconnect', () => {
         console.log('User disconnected');
       })
+}
+
+function initSockets(server){
+
+  io = require('socket.io')(server, {
+    cors: {
+      origin: "*",
+      methods: ["GET", "POST"],
+      credentials: true
+    }
+  });
+
+  io.on('connection',(socket)=>{
+    registerSocketEvents(socket)
+    })
+}
+
+module.exports= {
+  initSockets
 }

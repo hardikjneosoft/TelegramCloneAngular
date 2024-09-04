@@ -15,7 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { VerificationCodeComponent } from './verification-code/verification-code.component';
 import { provideHttpClient } from '@angular/common/http';
-
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +36,7 @@ import { provideHttpClient } from '@angular/common/http';
     CommonModule,
     ReactiveFormsModule,
   ],
-  providers: [provideHttpClient()],  //services
+  providers: [provideHttpClient(), provideAnimationsAsync()],  //services
   bootstrap: [AppComponent] //root component
 })
 export class AppModule { }

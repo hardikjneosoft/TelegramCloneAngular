@@ -120,6 +120,7 @@ main {
     overflow-y: scroll;
     /* margin-right: auto; */
 }
+
 .content .container .chat-msg{
     position: relative;
     top: 1rem;
@@ -261,6 +262,11 @@ main {
 .content .container .message-box .message-content .fa-microphone{
     opacity: 1;    
     transition: opacity ease-in-out 0.1s;
-
 }
+
+button.file-btn{
+    background: none;
+    border: none;
+}
+
 /* End here COntent section */

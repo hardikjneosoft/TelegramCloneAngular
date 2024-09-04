@@ -14,19 +14,19 @@
 
     <div class="body-container">
         <div class="chat-list">
-            <div *ngFor="let chat of chatData; let i = index" class="chat-box" [id]="'chat-' + i" (click)="setChatBoxEmitter.emit(i)">
+            <div *ngFor="let id of userIds;" class="chat-box" [id]="id" (click)="setChatBoxEmitter.emit(id)">
                 
                 <div class="chat-img">
-                  <img [src]="chat.pimg" alt="">
+                  <img [src]="chatData[id].pimg" alt="">
                 </div>
                 <div class="chat-details">
                   <div class="chat-title">
-                    <h3>{{ chat.name }}</h3>
-                    <span>{{ chat.time }}</span>
+                    <h3>{{ chatData[id].name }}</h3>
+                    <span>{{ chatData[id].time }}</span>
                   </div>
                   <div class="chat-msg">
-                    <p>{{ chat.msg }}</p>
-                    <span>{{ chat.unread }}</span>
+                    <p>{{ chatData[id].msg.at(-1) }}</p>
+                    <span>{{ chatData[id].unread }}</span>
                   </div>   
                 </div>
               </div>

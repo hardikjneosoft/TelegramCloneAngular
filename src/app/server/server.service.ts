@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { error } from 'jquery';
 import { Socket,io} from 'socket.io-client';
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class ServerService {
     username:'',
     phone:''
   }
-  loggedIn= false
+  loggedIn= true
   signingUp = false
   socket:Socket | undefined
   constructor(private http:HttpClient) {
@@ -41,7 +42,22 @@ export class ServerService {
     return this.http.post(this.url+'login/verify/otp',{phone,otp})
    }
 
+   sendFile(data:any){
+      const files = new FormData()
+      return this.http.post(this.url+'upload/file',data)
+   }
+
+   getMessages():any{
+    return this.http.get(this.url+'get/messages')
+   }
    
+   putMessages(data:any){
+    this.http.put(this.url+'updates/messages',data).subscribe({
+      next:()=>{},
+      error:error=>console.log(error)
+    })
+   }
+
    initSocket(){
     this.socket = io(this.url)
     this.socket.on('connect',()=>{
